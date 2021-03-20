@@ -8,9 +8,8 @@
 	<title>Phinocio</title>
 
 	<link href="{{ mix('/css/app.css') }}" rel="stylesheet">
-	<script>
-		0
-	</script>
+
+	<script src="{{ mix('/js/app.js') }}" defer></script>
 </head>
 
 <body class="antialiased bg-gray-700">
