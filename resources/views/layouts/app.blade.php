@@ -1,36 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{ config('app.name', 'Phinocio') }}</title>
+		@vite('resources/css/app.css')
+	</head>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+	<body class="bg-dark">
+		<nav class="mb-4 h-20 justify-between bg-blue-300 text-xl text-black sm:hidden md:flex">
+			<div class="container mx-auto flex items-center justify-between lg:px-60">
+				<div class="flex items-center space-x-6">
+					<a href="/" class="text-2xl font-bold hover:text-green-200">Phinocio</a>
+					<a href="/projects" class="hover:text-green-200">Projects</a>
+					<a href="/thoughts" class="hover:text-green-200">Random Thoughts</a>
+				</div>
+				<div class="flex space-x-4">
+					<a href="https://discord.gg/K3KnEgrQE4" target="_blank" rel="noopener noreferrer">
+						<x-icons.discord />
+					</a>
+					<a href="https://github.com/phinocio" target="_blank" rel="noopener noreferrer">
+						<x-icons.github />
+					</a>
+				</div>
+			</div>
+		</nav>
+		<main class="container mx-auto text-lg text-white lg:px-60">{{ $slot }}</main>
+		@vite('resources/js/app.js')
+	</body>
 </html>
