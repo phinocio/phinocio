@@ -17,7 +17,9 @@
 	  devShells.x86_64-linux.default = pkgs.mkShell {
 		  packages = with pkgs; [
 			php82
+			nodejs_20
 		  ];
+		  shellHook = ''export NODE_BIN="${pkgs.nodejs_20}/bin/node"'';
 		};
 	};
 }

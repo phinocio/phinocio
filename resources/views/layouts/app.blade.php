@@ -8,7 +8,7 @@
 	</head>
 
 	<body class="bg-dark">
-		<nav class="mb-4 h-20 justify-between bg-blue-300 text-xl text-black sm:hidden md:flex">
+		<nav class="mb-4 h-20 justify-between bg-blue-300 text-xl text-black sm:hidden md:flex py-4">
 			<div class="container mx-auto flex items-center justify-between lg:px-60">
 				<div class="flex items-center space-x-6">
 					<a href="/" class="text-2xl font-bold hover:text-green-200">Phinocio</a>
