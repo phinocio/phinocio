@@ -18,16 +18,7 @@
 		<div>
 			<h1 class="mb-2 text-3xl font-bold text-blue-300">Random Thoughts</h1>
 			<ul>
-				@foreach($posts as $post)
-				<li class="list-item">
-					<a
-						href="/thoughts/{{ $post->slug }}"
-						class="text-green-200 visited:text-red-300 hover:text-green-400"
-						><span class="font-mono">{{ $post->published_at->format("Y-m-d") }}</span>
-						<span class="px-2">-</span> {{ $post->title }}
-					</a>
-				</li>
-				@endforeach
+				<x-posts-list :posts="$posts" />
 			</ul>
 		</div>
 	</div>

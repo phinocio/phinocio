@@ -44,7 +44,7 @@ export default {
 				950: '#052e18',
 			},
 
-			dark: '#343A40', // background dark
+			dark: '#343A40',
 			white: '#FFFFFF',
 		},
 		extend: {},

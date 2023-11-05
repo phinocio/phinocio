@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,9 @@ Route::controller(PostController::class)->group(function () {
         ->name("thoughts.index");
     Route::get('/thoughts/{post:slug}', 'show')
         ->name("thoughts.show");
+});
+
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/thoughts/categories/{category:slug}', 'show')
+        ->name("categories.show");
 });
