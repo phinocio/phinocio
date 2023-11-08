@@ -14,7 +14,7 @@ class PostController extends Controller
     {
         $posts = Post::orderBy("published_at", "desc")->with("categories")->get();
 
-        return view("posts", ['posts' => $posts]);
+        return view("post.index", ['posts' => $posts]);
     }
 
     /**
@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        dd($post);
+        return view("post.show", ['post' => $post]);
     }
 
     /**
