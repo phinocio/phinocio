@@ -1,6 +1,6 @@
 @foreach($posts as $post)
 <li {{ $attributes->
-	class(['space-x-2', 'mb-2']) }}>
+	class(['space-x-2']) }}>
 	<span class="font-mono text-sm">{{ $post->published_at->format("Y-m-d") }} -</span>
 	<a href="/thoughts/{{ $post->slug }}" class="text-green-200 visited:text-red-300 hover:text-green-400">
 		{{ $post->title }}
