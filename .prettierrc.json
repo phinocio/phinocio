@@ -2,7 +2,7 @@
     "prettier.documentSelectors": [
         "**/*.blade.php"
     ],
-    "useTabs": true,
+    "useTabs": false,
     "semi": true,
     "trailingComma": "es5",
     "tabWidth": 4,
