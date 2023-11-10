@@ -1,7 +1,12 @@
 <x-app-layout>
-    <h1 class="mb-2 text-3xl font-bold text-blue-300">Random Thoughts</h1>
+    <div class="mb-8 flex flex-col">
+        <h1 class="text-2xl font-bold text-blue-500 dark:text-blue-400">Random Thoughts</h1>
+        <a
+            href="/thoughts/categories"
+            class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600"
+            >All Categories</a
+        >
+    </div>
 
-    <ul class="space-y-2">
-        <x-posts-list :posts="$posts" />
-    </ul>
+    <x-posts-list :posts="$posts" />
 </x-app-layout>

@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->foreignIdFor(Post::class, 'post_id')
                 ->constrained()
                 ->cascadeOnDelete();
+
+            $table->primary(['category_id', 'post_id']);
         });
     }
 

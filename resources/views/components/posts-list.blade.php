@@ -1,14 +1,22 @@
-@foreach($posts as $post)
-<li {{ $attributes->
-	class(['space-x-2']) }}>
-	<span class="font-mono text-sm">{{ $post->published_at->format("Y-m-d") }} -</span>
-	<a href="/thoughts/{{ $post->slug }}" class="text-green-200 visited:text-red-300 hover:text-green-400">
-		{{ $post->title }}
-	</a>
-	@foreach($post->categories as $category)
-	<button class="hidden text-sm italic text-blue-200 md:inline-block">
-		<a href="/thoughts/categories/{{ $category->slug }}" class="hover:text-blue-400">{{ $category->name }}</a>
-	</button>
-	@endforeach
-</li>
-@endforeach
+<ul class="space-y-4">
+    @foreach($posts as $post)
+    <li>
+        <span class="font-mono text-sm">{{ $post->published_at->format("Y-m-d") }} - </span>
+        <a
+            href="/thoughts/{{ $post->slug }}"
+            class="text-blue-600 visited:text-red-600 hover:text-blue-400 visited:hover:text-red-400 active:text-blue-400 visited:active:text-red-400 dark:text-blue-400 dark:visited:text-red-400 dark:hover:text-blue-600 dark:visited:hover:text-red-600 dark:active:text-blue-600 dark:visited:active:text-red-600"
+        >
+            {{ $post->title }}
+        </a>
+{{--        <section>--}}
+{{--            @foreach($post->categories as $category)--}}
+{{--            <a--}}
+{{--                href="/thoughts/categories/{{ $category->slug }}"--}}
+{{--                class="text-sm italic text-text-light dark:text-text-dark"--}}
+{{--                >{{ $category->name }}</a--}}
+{{--            >--}}
+{{--            @endforeach--}}
+{{--        </section>--}}
+    </li>
+    @endforeach
+</ul>

@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/thoughts/categories', 'index')
+        ->name("categories.index");
+    Route::get('/thoughts/categories/{category:slug}', 'show')
+        ->name("categories.show");
+});
+
+
 Route::controller(PostController::class)->group(function () {
     Route::get('/thoughts', 'index')
         ->name("thoughts.index");
@@ -25,7 +33,3 @@ Route::controller(PostController::class)->group(function () {
         ->name("thoughts.show");
 });
 
-Route::controller(CategoryController::class)->group(function () {
-    Route::get('/thoughts/categories/{category:slug}', 'show')
-        ->name("categories.show");
-});

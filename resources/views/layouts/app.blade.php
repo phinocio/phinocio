@@ -5,24 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{{ config('app.name', 'Phinocio') }}</title>
         @vite('resources/css/app.css')
-
-        <script>
-            function toggleMenu(id) {
-                document.getElementById(id).classList.toggle('hidden');
-            }
-        </script>
     </head>
 
-    <body class="bg-slate-900 text-white">
-        <header class="mb-6 bg-blue-500 px-4 py-2">
-            <nav class="container mx-auto flex flex-col text-black">
+    <body class="bg-light text-text-light dark:bg-dark dark:text-text-dark">
+        <header class="mb-6 border-b border-slate-400 px-4 py-4 text-black dark:border-slate-700 dark:text-white">
+            <nav class="container mx-auto flex flex-col">
                 <div class="flex items-center justify-between">
-                    <a href="/" class="text-xl font-bold">Phinocio</a>
-                    <button type="button" onclick="toggleMenu('dropdown-nav')">
+                    <a href="/" class="text-xl font-bold text-red-500 dark:text-red-400">Phinocio</a>
+                    <button
+                        type="button"
+                        onclick="toggleMenu('dropdown-nav')"
+                        aria-label="Toggle menu"
+                        class="rounded hover:bg-red-400 active:bg-red-400 dark:hover:bg-red-500 dark:active:bg-red-500"
+                    >
                         <x-icons.menu />
                     </button>
                 </div>
-                <div id="dropdown-nav" class="flex hidden flex-col text-center">
+                <div id="dropdown-nav" class="mt-2 flex hidden flex-col text-center" aria-hidden="true">
                     <a href="/projects" class="rounded-2xl py-2 hover:bg-red-400 active:bg-red-400">Projects</a>
                     <a href="/thoughts" class="rounded-2xl py-2 hover:bg-red-400 active:bg-red-400">Random Thoughts</a>
                     <div class="flex justify-center">

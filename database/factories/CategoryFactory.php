@@ -2,13 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends Factory<Category>
  */
 class CategoryFactory extends Factory
 {
+    private array $names = [
+        "programming", "go", "misc", "security", "webdev", "shitpost"
+    ];
+
     /**
      * Define the model's default state.
      *
@@ -16,9 +22,10 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $name = array_rand($this->names);
         return [
-            'name' => $this->faker->word(),
-            'slug' => $this->faker->slug(2),
+            'name' => $name,
+            'slug' => Str::slug($name),
         ];
     }
 }

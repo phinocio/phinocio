@@ -1,23 +1,35 @@
 <x-app-layout>
-    <p class="mb-8">
-        Hi I'm Phin. I'm just a nerd that likes making websites and reading about cool tech stuff. This is my own small
-        corner of the internet to show some stuff I've made, and write some random thoughts no one will ever read.
-    </p>
+    <section class="mb-8">
+        <p>
+            Hi I'm Phin. I'm just a nerd that likes making websites and reading about cool tech stuff. This is my own
+            small corner of the internet to show some stuff I've made, and write some random thoughts no one will ever
+            read.
+        </p>
+    </section>
 
     <section class="mb-8">
-        <h1 class="mb-2 text-3xl font-bold text-blue-300">Projects</h1>
+        <h1 class="mb-4 text-2xl font-bold">Projects</h1>
         <ul>
-            <li class="text-green-200">
-                <a href="#" class="visited:text-red-300 hover:text-green-400">Load Order Library</a>
+            <li>
+                <a
+                    href="#"
+                    class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
+                    >Load Order Library</a
+                >
             </li>
-            <li class="text-green-200"><a href="#" class="visited:text-red-300 hover:text-green-400">Nazeem</a></li>
+            <li>
+                <a
+                    href="#"
+                    class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
+                    >Nazeem</a
+                >
+            </li>
         </ul>
     </section>
 
     <section>
-        <h1 class="mb-2 text-3xl font-bold text-blue-300">Random Thoughts</h1>
-        <ul class="space-y-2">
-            <x-posts-list :posts="$posts" />
-        </ul>
+        <h1 class="mb-8 text-2xl font-bold">Random Thoughts</h1>
+
+        <x-posts-list :posts="$posts" />
     </section>
 </x-app-layout>
