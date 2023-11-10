@@ -8,10 +8,10 @@
     </head>
 
     <body class="bg-light text-text-light dark:bg-dark dark:text-text-dark">
-        <header class="mb-6 border-b border-slate-400 px-4 py-4 text-black dark:border-slate-700 dark:text-white">
-            <nav class="container mx-auto flex flex-col">
+        <header class="mb-6 border-b border-slate-400 text-black dark:border-slate-700 dark:text-white">
+            <nav class="container mx-auto flex flex-col px-4 py-4 lg:px-40">
                 <div class="flex items-center justify-between">
-                    <a href="/" class="text-xl font-bold text-red-500 dark:text-red-400">Phinocio</a>
+                    <a href="/" class="text-2xl font-bold text-red-500 dark:text-red-400">Phinocio</a>
                     <button
                         type="button"
                         onclick="toggleMenu('dropdown-nav')"
@@ -45,7 +45,7 @@
                 </div>
             </nav>
         </header>
-        <main class="container mx-auto px-4">{{ $slot }}</main>
+        <main class="container mx-auto px-4 lg:px-40 lg:text-xl">{{ $slot }}</main>
         @vite('resources/js/app.js')
     </body>
 </html>

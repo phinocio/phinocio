@@ -1,12 +1,11 @@
 <x-app-layout>
-    <div class="mb-8 flex flex-col">
-        <h1 class="text-2xl font-bold text-blue-500 dark:text-blue-400">Random Thoughts</h1>
-        <a
-            href="/thoughts/categories"
-            class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600"
-            >All Categories</a
-        >
-    </div>
+    <section class="mb-8">
+        <h1 class="mb-4 text-2xl font-bold">Random Thoughts</h1>
 
-    <x-posts-list :posts="$posts" />
+        <x-posts-list :posts="$posts" />
+    </section>
+    <section>
+        <h1 class="mb-4 text-2xl font-bold">Categories</h1>
+        <x-categories-list :categories="$categories" />
+    </section>
 </x-app-layout>

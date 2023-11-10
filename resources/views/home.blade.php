@@ -28,7 +28,7 @@
     </section>
 
     <section>
-        <h1 class="mb-8 text-2xl font-bold">Random Thoughts</h1>
+        <h1 class="mb-4 text-2xl font-bold">Random Thoughts</h1>
 
         <x-posts-list :posts="$posts" />
     </section>
