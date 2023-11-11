@@ -5,17 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use League\CommonMark\Exception\CommonMarkException;
+use League\CommonMark\MarkdownConverter;
 
 class PostController extends Controller
 {
+    public function __construct(private readonly MarkdownConverter $converter)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::whereNotNull('published_at')->orderBy("published_at", "desc")->with("categories")->get();
+        $posts = Post::whereNotNull('published_at')->latest('published_at')->get();
         $categories = Category::orderBy('name')->get();
 
         return view("post.index", ['posts' => $posts, 'categories' => $categories]);
@@ -59,9 +66,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Post $post): View
     {
-
+        $post->load('categories');
+        try {
+            $post->content = $this->converter->convert($post->content);
+//            $post->content = $this->converter->convert(file_get_contents(resource_path('example.md')));
+        } catch (CommonMarkException $e) {
+            abort(500, $e->getMessage());
+        }
         return view("post.show", ['post' => $post]);
     }
 

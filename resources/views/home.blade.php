@@ -2,7 +2,7 @@
 
 <x-app-layout>
     <section class="mb-8">
-        <p>
+        <p class="leading-loose">
             Hi I'm Phin. I'm just a nerd that likes making websites and reading about cool tech stuff. This is my own
             small corner of the internet to show some stuff I've made, and write some random thoughts no one will ever
             read.
@@ -10,7 +10,7 @@
     </section>
 
     <section class="mb-8">
-        <h1 class="mb-4 text-2xl font-bold">Projects</h1>
+        <h1 class="mb-4 text-3xl font-bold">Projects</h1>
         <ul>
             <li>
                 <a
@@ -30,7 +30,7 @@
     </section>
 
     <section>
-        <h1 class="mb-4 text-2xl font-bold">Random Thoughts</h1>
+        <h1 class="mb-4 text-3xl font-bold">Random Thoughts</h1>
 
         <x-posts-list :posts="$posts" />
     </section>

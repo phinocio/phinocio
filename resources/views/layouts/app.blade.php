@@ -7,24 +7,34 @@
         @vite('resources/css/app.css')
     </head>
 
-    <body class="bg-light text-text-light dark:bg-dark dark:text-text-dark">
-        <header class="mb-6 border-b border-slate-400 text-black dark:border-slate-700 dark:text-white">
-            <nav class="container mx-auto flex flex-col px-4 py-4 lg:px-40">
+    <body class="flex min-h-screen flex-col bg-light text-text-light dark:bg-dark dark:text-text-dark">
+        <header class="border-border-light dark:border-border-dark mb-6 border-b-2 text-black dark:text-white">
+            <nav class="container mx-auto flex flex-col px-4 py-4 md:flex-row lg:px-80">
                 <div class="flex items-center justify-between">
-                    <a href="/" class="text-2xl font-bold text-red-500 dark:text-red-400">Phinocio</a>
+                    <a href="/" class="text-2xl font-bold text-red-500 dark:text-red-400 md:mr-6">Phinocio</a>
                     <button
                         type="button"
                         onclick="toggleMenu('dropdown-nav')"
                         aria-label="Toggle menu"
-                        class="rounded hover:bg-red-400 active:bg-red-400 dark:hover:bg-red-500 dark:active:bg-red-500"
+                        class="rounded hover:bg-red-400 active:bg-red-400 dark:hover:bg-red-500 dark:active:bg-red-500 md:hidden"
                     >
                         <x-icons.menu />
                     </button>
                 </div>
-                <div id="dropdown-nav" class="mt-2 flex hidden flex-col text-center" aria-hidden="true">
-                    <a href="/projects" class="rounded-2xl py-2 hover:bg-red-400 active:bg-red-400">Projects</a>
-                    <a href="/thoughts" class="rounded-2xl py-2 hover:bg-red-400 active:bg-red-400">Random Thoughts</a>
-                    <div class="flex justify-center">
+                <div
+                    id="dropdown-nav"
+                    class="mt-2 hidden w-full flex-col text-center md:mt-0 md:flex md:flex-row md:items-center md:justify-between"
+                    aria-hidden="true"
+                >
+                    <div class="flex flex-col md:flex-row">
+                        <a href="/projects" class="rounded-2xl py-2 hover:bg-red-400 active:bg-red-400 md:px-4"
+                            >Projects</a
+                        >
+                        <a href="/thoughts" class="rounded-2xl py-2 hover:bg-red-400 active:bg-red-400 md:px-4"
+                            >Random Thoughts</a
+                        >
+                    </div>
+                    <div class="flex justify-center md:justify-end">
                         <a
                             href="https://discord.gg/K3KnEgrQE4"
                             target="_blank"
@@ -45,7 +55,12 @@
                 </div>
             </nav>
         </header>
-        <main class="container mx-auto px-4 lg:px-40 lg:text-xl">{{ $slot }}</main>
+        <main class="container mx-auto mb-20 flex h-full flex-grow flex-col px-4 lg:px-80 lg:text-xl">{{ $slot }}</main>
+        <footer
+            class="border-border-light dark:border-border-dark border-t-2 bg-[#dce0e8] text-center text-black dark:bg-[#11111b] dark:text-white"
+        >
+            <div class="container mx-auto flex flex-col px-4 py-12 lg:px-40">Made by Phinocio</div>
+        </footer>
         @vite('resources/js/app.js') @stack('scripts')
     </body>
 </html>

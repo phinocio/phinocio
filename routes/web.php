@@ -36,4 +36,3 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/thoughts/{post:slug}', 'show')
         ->name("posts.show");
 });
-

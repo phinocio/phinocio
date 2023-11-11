@@ -11,11 +11,13 @@ class Post extends Model
 {
     use HasFactory;
 
+
     protected $fillable = ["title", "summary", "slug", "content", "published_at", "user_id"];
 
     protected $casts = [
         'published_at' => 'datetime'
     ];
+
 
     public function user(): BelongsTo
     {
