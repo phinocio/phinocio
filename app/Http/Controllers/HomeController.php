@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy("published_at", "desc")->get();
+        $posts = Post::whereNotNull("published_at")->orderBy("published_at", "desc")->get();
         return view("home", ['posts' => $posts]);
     }
 }

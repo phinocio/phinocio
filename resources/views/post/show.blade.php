@@ -1,3 +1,5 @@
+@section('title', $post->title)
+
 <x-app-layout>
     <article class="space-y-6">
         <!-- Post Info -->
@@ -5,8 +7,8 @@
             <h1 class="text-2xl font-bold text-blue-500 dark:text-blue-400">{{ $post->title }}</h1>
             <div class="flex flex-col text-sm">
                 <!-- TODO: Run through some kind of JS localization library. -->
-                <p>Published: {{ $post->published_at->diffForHumans() }}</p>
-                <p>Updated: {{ $post->updated_at->diffForHumans() }}</p>
+                <p>Published: {{ $post->published_at?->diffForHumans() ?? 'Unpublished' }}</p>
+                <p>Updated: {{ $post->updated_at->diffForHumans()}}</p>
             </div>
             <p class="text-md {{ $post->summary ? 'italic' : 'hidden' }}">{{ $post->summary ?? '' }}</p>
 
@@ -23,8 +25,7 @@
         </header>
         <!-- Post Content -->
         <section class="space-y-2">
-            <h2 class="text-xl font-bold">Meow blah blah content</h2>
-            <p>{{ $post->content }}</p>
+            <x-markdown class="post space-y-4"> {!! $post->content !!} </x-markdown>
         </section>
     </article>
 </x-app-layout>

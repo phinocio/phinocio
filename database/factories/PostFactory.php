@@ -24,7 +24,7 @@ class PostFactory extends Factory
             'title' => $title,
             'summary' => $this->faker->sentence(10),
             'slug' => Str::slug($title),
-            'content' => $this->faker->paragraph(),
+            'content' => file_get_contents(resource_path('example.md')),
             'published_at' => $this->faker->dateTime(),
             'user_id' => User::factory()->create()->id,
         ];

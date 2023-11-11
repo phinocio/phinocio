@@ -1,3 +1,5 @@
+@section('title', 'Home')
+
 <x-app-layout>
     <section class="mb-8">
         <p>

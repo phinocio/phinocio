@@ -1,3 +1,5 @@
+@section('title', 'All Posts')
+
 <x-app-layout>
     <section class="mb-8">
         <h1 class="mb-4 text-2xl font-bold">Random Thoughts</h1>

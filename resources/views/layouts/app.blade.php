@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{ config('app.name', 'Phinocio') }}</title>
+        <title>@yield('title') - {{ config('app.name', 'Phinocio') }}</title>
         @vite('resources/css/app.css')
     </head>
 
@@ -46,6 +46,6 @@
             </nav>
         </header>
         <main class="container mx-auto px-4 lg:px-40 lg:text-xl">{{ $slot }}</main>
-        @vite('resources/js/app.js')
+        @vite('resources/js/app.js') @stack('scripts')
     </body>
 </html>

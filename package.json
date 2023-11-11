@@ -15,5 +15,9 @@
         "prettier-plugin-tailwindcss": "^0.5.6",
         "tailwindcss": "^3.3.5",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@toast-ui/editor": "^3.2.2",
+        "shiki": "^0.14.5"
     }
 }

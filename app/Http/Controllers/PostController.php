@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -13,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy("published_at", "desc")->with("categories")->get();
+        $posts = Post::whereNotNull('published_at')->orderBy("published_at", "desc")->with("categories")->get();
         $categories = Category::orderBy('name')->get();
 
         return view("post.index", ['posts' => $posts, 'categories' => $categories]);
@@ -24,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("post.create");
     }
 
     /**
@@ -32,7 +34,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'summary' => 'max:255',
+            'content' => 'required',
+            'publish' => 'string',
+        ]);
+
+
+        $slug = Str::slug($request['title']);
+
+        $post = new Post();
+        $post->title = $request['title'];
+        $post->summary = $request['summary'];
+        $post->slug = $slug;
+        $post->content = $request['content'];
+        $post->published_at = $request['publish'] ? Carbon::now() : null;
+        $post->user_id = 1;
+        $post->save();
+
+        return redirect('thoughts/' . $slug);
     }
 
     /**
@@ -40,6 +61,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+
         return view("post.show", ['post' => $post]);
     }
 

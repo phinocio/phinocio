@@ -28,8 +28,12 @@ Route::controller(CategoryController::class)->group(function () {
 
 Route::controller(PostController::class)->group(function () {
     Route::get('/thoughts', 'index')
-        ->name("thoughts.index");
+        ->name("posts.index");
+    Route::get('/thoughts/create', 'create')
+        ->name("posts.create");
+    Route::post("/thoughts", 'store')
+        ->name("posts.store");
     Route::get('/thoughts/{post:slug}', 'show')
-        ->name("thoughts.show");
+        ->name("posts.show");
 });
 
