@@ -1,4 +1,4 @@
-@section('title', 'All Posts')
+@section('title', 'All Thoughts')
 
 <x-app-layout>
     <section class="mb-8">
