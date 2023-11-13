@@ -71,7 +71,7 @@ class PostController extends Controller
         $post->load('categories');
         try {
             $post->content = $this->converter->convert($post->content);
-//            $post->content = $this->converter->convert(file_get_contents(resource_path('example.md')));
+            //            $post->content = $this->converter->convert(file_get_contents(resource_path('example.md')));
         } catch (CommonMarkException $e) {
             abort(500, $e->getMessage());
         }
