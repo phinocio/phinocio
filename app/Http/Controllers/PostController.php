@@ -60,7 +60,7 @@ class PostController extends Controller
         $post->user_id = 1;
         $post->save();
 
-        return redirect('thoughts/' . $slug);
+        return redirect('thoughts/' . $post->slug);
     }
 
     /**
@@ -83,7 +83,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view("post.edit", ['post' => $post]);
     }
 
     /**
@@ -91,7 +91,24 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'summary' => 'max:255',
+            'content' => 'required',
+            'publish' => 'string',
+        ]);
+
+        $post->title = $request['title'];
+        $post->summary = $request['summary'];
+        $post->content = $request['content'];
+        if ($post->published_at !== null && $request['publish'] === null) {
+            $post->published_at = null;
+        } elseif ($post->published_at === null && $request['publish'] !== null) {
+            $post->published_at = Carbon::now();
+        }
+        $post->save();
+
+        return redirect('thoughts/' . $post->slug);
     }
 
     /**

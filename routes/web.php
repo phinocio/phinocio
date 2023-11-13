@@ -31,8 +31,12 @@ Route::controller(PostController::class)->group(function () {
         ->name("posts.index");
     Route::get('/thoughts/create', 'create')
         ->name("posts.create");
+    Route::get('/thoughts/{post:slug}/edit', 'edit')
+        ->name("posts.edit");
     Route::post("/thoughts", 'store')
         ->name("posts.store");
+    Route::put("/thoughts/{post:slug}", 'update')
+        ->name("posts.update");
     Route::get('/thoughts/{post:slug}', 'show')
         ->name("posts.show");
 });
