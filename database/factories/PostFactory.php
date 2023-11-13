@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Post;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -25,8 +26,15 @@ class PostFactory extends Factory
             'summary' => $this->faker->sentence(10),
             'slug' => Str::slug($title),
             'content' => file_get_contents(resource_path('example.md')),
-            'published_at' => $this->faker->dateTime(),
             'user_id' => User::factory()->create()->id,
         ];
+    }
+
+    public function published(Carbon $date = null): Factory
+    {
+        return $this->state(
+            fn ($attributes) =>
+            ['published_at' => $date ?? Carbon::now()]
+        );
     }
 }

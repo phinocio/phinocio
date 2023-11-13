@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "phinocio/phinocio",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "phinocio.com",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {

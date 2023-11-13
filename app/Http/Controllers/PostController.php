@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::whereNotNull('published_at')->latest('published_at')->get();
+        $posts = Post::published()->latest('published_at')->get();
         $categories = Category::orderBy('name')->get();
 
         return view("post.index", ['posts' => $posts, 'categories' => $categories]);
