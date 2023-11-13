@@ -8,7 +8,7 @@
     </head>
 
     <body class="flex min-h-screen flex-col bg-light text-text-light dark:bg-dark dark:text-text-dark">
-        <header class="border-border-light dark:border-border-dark mb-6 border-b-2 text-black dark:text-white">
+        <header class="mb-6 border-b border-border-light text-black dark:border-border-dark dark:text-white">
             <nav class="container mx-auto flex flex-col px-4 py-4 md:flex-row lg:px-80">
                 <div class="flex items-center justify-between">
                     <a href="/" class="text-2xl font-bold text-red-500 dark:text-red-400 md:mr-6">Phinocio</a>
@@ -27,10 +27,14 @@
                     aria-hidden="true"
                 >
                     <div class="flex flex-col md:flex-row">
-                        <a href="/projects" class="rounded-2xl py-2 hover:bg-red-400 active:bg-red-400 md:px-4"
+                        <a
+                            href="/projects"
+                            class="rounded-2xl py-2 hover:bg-red-300 active:bg-red-300 dark:hover:bg-red-500 dark:active:bg-red-500 md:px-4"
                             >Projects</a
                         >
-                        <a href="/thoughts" class="rounded-2xl py-2 hover:bg-red-400 active:bg-red-400 md:px-4"
+                        <a
+                            href="/thoughts"
+                            class="rounded-2xl py-2 hover:bg-red-300 active:bg-red-300 dark:hover:bg-red-500 dark:active:bg-red-500 md:px-4"
                             >Random Thoughts</a
                         >
                     </div>
@@ -39,7 +43,7 @@
                             href="https://discord.gg/K3KnEgrQE4"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="rounded-2xl px-4 py-2 hover:bg-red-400 active:bg-red-400"
+                            class="rounded-2xl px-4 py-2 hover:bg-red-400 active:bg-red-400 dark:hover:bg-red-500 dark:active:bg-red-500"
                         >
                             <x-icons.discord />
                         </a>
@@ -47,7 +51,7 @@
                             href="https://github.com/phinocio"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="rounded-2xl px-4 py-2 hover:bg-red-400 active:bg-red-400"
+                            class="rounded-2xl px-4 py-2 hover:bg-red-400 active:bg-red-400 dark:hover:bg-red-500 dark:active:bg-red-500"
                         >
                             <x-icons.github />
                         </a>
@@ -56,10 +60,10 @@
             </nav>
         </header>
         <main class="container mx-auto mb-20 flex h-full flex-grow flex-col px-4 lg:px-80 lg:text-xl">{{ $slot }}</main>
-        <footer
-            class="border-border-light dark:border-border-dark border-t-2 bg-[#dce0e8] text-center text-black dark:bg-[#11111b] dark:text-white"
-        >
-            <div class="container mx-auto flex flex-col px-4 py-12 lg:px-40">Made by Phinocio</div>
+        <footer class="bg-[#dce0e8] text-center text-black dark:bg-[#11111b] dark:text-white">
+            <div class="container mx-auto flex flex-col px-4 py-4 text-gray-500 dark:text-gray-600 lg:px-40">
+                Made by Phinocio
+            </div>
         </footer>
         @vite('resources/js/app.js') @stack('scripts')
     </body>
