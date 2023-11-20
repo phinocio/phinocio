@@ -70,7 +70,7 @@
             </div>
         </formgroup>
     </form>
-    <div class="absolute right-10">
+    <div class="absolute right-72">
         <h2 class="text-xl font-bold">Categories</h2>
         <ul>
             @foreach( $categories as $category )
