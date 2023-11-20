@@ -8,5 +8,5 @@
             "named_class": true
         }
     },
-    "exclude": "resources"
+    "exclude": "resources/**"
 }

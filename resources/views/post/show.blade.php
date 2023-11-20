@@ -28,7 +28,7 @@
         --}}
         <!-- Post Content -->
         <section class="space-y-8">{!! $post->content !!}</section>
-
+        @auth
         <p class="mt-2 border-t border-border-light pt-2 text-right text-xs dark:border-border-dark">
             <a
                 href="/thoughts/{{ $post->slug }}/edit"
@@ -36,5 +36,6 @@
                 >Edit this post</a
             >
         </p>
+        @endauth
     </article>
 </x-app-layout>

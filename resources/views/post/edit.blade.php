@@ -2,13 +2,13 @@
 
 <x-app-layout>
     <h1 class="text-2xl font-bold">Edit Post</h1>
-    {{-- @if ($errors->any())--}} {{--
+    @if ($errors->any())
     <ul class="list-inside list-disc space-y-2">
-        --}} {{-- @foreach ($errors->all() as $error)--}} {{--
+        @foreach ($errors->all() as $error)
         <li class="text-red-500">{{ $error }}</li>
-        --}} {{-- @endforeach--}} {{--
+        @endforeach
     </ul>
-    --}} {{-- @endif--}}
+    @endif
     <form method="POST" action="/thoughts/{{ $post->slug }}" id="createPostForm" class="space-y-4">
         @csrf @method('PUT')
         <formgroup class="flex flex-col space-y-2">
@@ -72,13 +72,9 @@
             <button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white">Edit Post</button>
             <div class="flex items-center space-x-4 align-middle">
                 <label for="publish" class="rounded py-2">Publish? </label>
-                <input
-                    id="publish"
-                    type="checkbox"
-                    name="publish"
-                    class="h-6 w-6 checked:shadow-xl"
-                    checked="{{ $post->published_at !== null ? 'checked' : '' }}"
-                />
+                <!-- prettier-ignore-->
+                <input id="publish" type="checkbox" name="publish" {{ $post->published_at ? 'checked' : '' }}
+                class="h-6 w-6 checked:shadow-xl"/>
             </div>
         </formgroup>
     </form>

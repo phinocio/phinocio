@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use League\CommonMark\Exception\CommonMarkException;
 use League\CommonMark\MarkdownConverter;
@@ -15,7 +16,7 @@ class PostController extends Controller
 {
     public function __construct(private readonly MarkdownConverter $converter)
     {
-        $this->middleware('auth')->except('index', 'show');
+        $this->authorizeResource(Post::class, 'post');
     }
 
     /**
@@ -40,31 +41,25 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'title' => 'required|unique:posts|max:255',
-            'summary' => 'max:255',
-            'content' => 'required',
-            'categories' => 'required|string',
-            'publish' => 'string',
-        ]);
+        $validated = $request->validated();
 
         $categories = [];
 
-        foreach (explode(',', $request['categories']) as $category) {
+        foreach (explode(',', $validated['categories']) as $category) {
             $categories[] = Category::firstOrCreate(['name' => trim($category), 'slug' => Str::slug($category)])->id;
         }
 
-        $slug = Str::slug($request['title']);
+        $slug = Str::slug($validated['title']);
 
         $post = new Post();
-        $post->title = $request['title'];
-        $post->summary = $request['summary'];
+        $post->title = $validated['title'];
+        $post->summary = $validated['summary'];
         $post->slug = $slug;
-        $post->content = $request['content'];
-        $post->published_at = $request['publish'] ? Carbon::now() : null;
-        $post->user_id = 1;
+        $post->content = $validated['content'];
+        $post->published_at = $validated['publish'] ? Carbon::now() : null;
+        $post->user_id = auth()->user()->id;
         $post->save();
         $post->categories()->sync($categories);
 
@@ -97,30 +92,23 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'summary' => 'max:255',
-            'content' => 'required',
-            'categories' => 'required|string',
-            'publish' => 'string',
-        ]);
+        $validated = $request->validated();
 
         $categories = [];
-
-        foreach (explode(',', $request['categories']) as $category) {
+        foreach (explode(',', $validated['categories']) as $category) {
             $categories[] = Category::firstOrCreate(['name' => trim($category), 'slug' => Str::slug($category)])->id;
         }
-
-        $post->title = $request['title'];
-        $post->summary = $request['summary'];
-        $post->content = $request['content'];
-        if ($post->published_at !== null && $request['publish'] === null) {
-            $post->published_at = null;
-        } elseif ($post->published_at === null && $request['publish'] !== null) {
-            $post->published_at = Carbon::now();
-        }
+        $post->title = $validated['title'];
+        $post->summary = $validated['summary'];
+        $post->content = $validated['content'];
+        //        if ($post->published_at !== null && $validated['publish'] === null) {
+        //            $post->published_at = null;
+        //        } elseif ($post->published_at === null && $validated['publish'] !== null) {
+        //            $post->published_at = Carbon::now();
+        //        }
+        $post->published_at = isset($validated['publish']) ? Carbon::now() : null;
         $post->save();
         $post->categories()->sync($categories);
 
