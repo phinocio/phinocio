@@ -48,7 +48,8 @@ class PostController extends Controller
         $categories = [];
 
         foreach (explode(',', $validated['categories']) as $category) {
-            $categories[] = Category::firstOrCreate(['name' => trim($category), 'slug' => Str::slug($category)])->id;
+            $category = strtolower(trim($category));
+            $categories[] = Category::firstOrCreate(['name' => $category, 'slug' => Str::slug($category)])->id;
         }
 
         $slug = Str::slug($validated['title']);
