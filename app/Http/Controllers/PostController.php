@@ -15,6 +15,7 @@ class PostController extends Controller
 {
     public function __construct(private readonly MarkdownConverter $converter)
     {
+        $this->middleware('auth')->except('index', 'show');
     }
 
     /**

@@ -169,6 +169,7 @@ return [
         App\Providers\CommonmarkServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
     ])->toArray(),
 
     /*

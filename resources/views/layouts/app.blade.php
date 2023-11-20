@@ -59,7 +59,28 @@
                 </div>
             </nav>
         </header>
-        <main class="container mx-auto mb-20 flex h-full flex-grow flex-col px-4 lg:px-80 lg:text-xl">{{ $slot }}</main>
+        <main class="container mx-auto mb-20 flex h-full flex-grow flex-col px-4 lg:px-80 lg:text-xl">
+            @auth
+            <div class="flex items-center justify-end space-x-2 align-middle">
+                <a
+                    href="/thoughts/create"
+                    class="text-sm text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
+                >
+                    New Thought
+                </a>
+
+                <form action="/logout" method="POST" class="flex">
+                    @csrf
+                    <button
+                        type="submit"
+                        class="text-sm text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
+                    >
+                        Logout
+                    </button>
+                </form>
+            </div>
+            @endauth {{ $slot }}
+        </main>
         <footer class="bg-[#dce0e8] text-center text-black dark:bg-[#11111b] dark:text-white">
             <div class="container mx-auto flex flex-col px-4 py-4 text-gray-500 dark:text-gray-600 lg:px-40">
                 Made by Phinocio
