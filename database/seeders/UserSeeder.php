@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'Phinocio',
             'email' => 'contact@phinocio.com',
             'password' => \Hash::make('supersecret'),
-            'is_admin' => true,
+            'is_admin' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

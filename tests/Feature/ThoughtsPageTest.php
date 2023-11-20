@@ -4,7 +4,6 @@ use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
