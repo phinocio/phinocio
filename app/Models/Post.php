@@ -30,8 +30,8 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function scopePublished(Builder $query): void
+    public function scopePublished(Builder $query): Builder
     {
-        $query->whereNotNull('published_at');
+        return $query->whereNotNull('published_at');
     }
 }

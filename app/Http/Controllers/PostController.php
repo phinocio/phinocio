@@ -23,7 +23,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::published()->latest('published_at')->get();
-        $categories = Category::orderBy('name')->get();
+        $categories = Category::with('publishedPosts')->orderBy('name')->get();
 
         return view("post.index", ['posts' => $posts, 'categories' => $categories]);
     }
@@ -33,7 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("post.create");
+        return view("post.create", ['categories' => Category::orderBy('name')->get()]);
     }
 
     /**
@@ -45,9 +45,15 @@ class PostController extends Controller
             'title' => 'required|unique:posts|max:255',
             'summary' => 'max:255',
             'content' => 'required',
+            'categories' => 'required|string',
             'publish' => 'string',
         ]);
 
+        $categories = [];
+
+        foreach (explode(',', $request['categories']) as $category) {
+            $categories[] = Category::firstOrCreate(['name' => trim($category), 'slug' => Str::slug($category)])->id;
+        }
 
         $slug = Str::slug($request['title']);
 
@@ -59,6 +65,7 @@ class PostController extends Controller
         $post->published_at = $request['publish'] ? Carbon::now() : null;
         $post->user_id = 1;
         $post->save();
+        $post->categories()->sync($categories);
 
         return redirect('thoughts/' . $post->slug);
     }
@@ -95,8 +102,15 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'summary' => 'max:255',
             'content' => 'required',
+            'categories' => 'required|string',
             'publish' => 'string',
         ]);
+
+        $categories = [];
+
+        foreach (explode(',', $request['categories']) as $category) {
+            $categories[] = Category::firstOrCreate(['name' => trim($category), 'slug' => Str::slug($category)])->id;
+        }
 
         $post->title = $request['title'];
         $post->summary = $request['summary'];
@@ -107,6 +121,7 @@ class PostController extends Controller
             $post->published_at = Carbon::now();
         }
         $post->save();
+        $post->categories()->sync($categories);
 
         return redirect('thoughts/' . $post->slug);
     }

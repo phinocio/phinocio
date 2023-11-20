@@ -2,13 +2,13 @@
 
 <x-app-layout>
     <h1 class="text-2xl font-bold">Edit Post</h1>
-    @if ($errors->any())
+    {{-- @if ($errors->any())--}} {{--
     <ul class="list-inside list-disc space-y-2">
-        @foreach ($errors->all() as $error)
+        --}} {{-- @foreach ($errors->all() as $error)--}} {{--
         <li class="text-red-500">{{ $error }}</li>
-        @endforeach
+        --}} {{-- @endforeach--}} {{--
     </ul>
-    @endif
+    --}} {{-- @endif--}}
     <form method="POST" action="/thoughts/{{ $post->slug }}" id="createPostForm" class="space-y-4">
         @csrf @method('PUT')
         <formgroup class="flex flex-col space-y-2">
@@ -36,6 +36,20 @@
                 name="summary"
                 class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700"
                 value="{{ old('summary') ? old('summary') : $post->summary ?? '' }}"
+            />
+        </formgroup>
+
+        <formgroup class="flex flex-col space-y-2">
+            <label for="categories" class="font-bold">Categories (comma separated)</label>
+            @error('categories')
+            <span class="rounded border border-red-500 bg-red-300 p-2 text-red-900">{{ $message }}</span>
+            @enderror
+            <input
+                id="categories"
+                type="text"
+                name="categories"
+                class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700"
+                value="{{ old('categories') ? old('categories') : $post->categories->pluck('slug')->implode(',') }}"
             />
         </formgroup>
 

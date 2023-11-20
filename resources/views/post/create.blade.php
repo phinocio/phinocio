@@ -1,13 +1,13 @@
 @section('title', 'Create Post')
 
 <x-app-layout>
-    @if ($errors->any())
+    {{-- @if ($errors->any())--}} {{--
     <ul class="list-inside list-disc space-y-2">
-        @foreach ($errors->all() as $error)
+        --}} {{-- @foreach ($errors->all() as $error)--}} {{--
         <li class="text-red-500">{{ $error }}</li>
-        @endforeach
+        --}} {{-- @endforeach--}} {{--
     </ul>
-    @endif
+    --}} {{-- @endif--}}
     <form method="POST" action="/thoughts" id="createPostForm" class="space-y-4">
         @csrf
         <formgroup class="flex flex-col space-y-2">
@@ -39,6 +39,20 @@
         </formgroup>
 
         <formgroup class="flex flex-col space-y-2">
+            <label for="categories" class="font-bold">Categories (comma separated)</label>
+            @error('categories')
+            <span class="rounded border border-red-500 bg-red-300 p-2 text-red-900">{{ $message }}</span>
+            @enderror
+            <input
+                id="categories"
+                type="text"
+                name="categories"
+                class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700"
+                value="{{ old('categories') }}"
+            />
+        </formgroup>
+
+        <formgroup class="flex flex-col space-y-2">
             <label for="editor" class="font-bold">Content</label>
             @error('content')
             <span class="rounded border border-red-500 bg-red-300 p-2 text-red-900">{{ $message }}</span>
@@ -56,5 +70,13 @@
             </div>
         </formgroup>
     </form>
+    <div class="absolute right-10">
+        <h2 class="text-xl font-bold">Categories</h2>
+        <ul>
+            @foreach( $categories as $category )
+            <li>{{ $category->name }}</li>
+            @endforeach
+        </ul>
+    </div>
     @pushOnce('scripts') @vite('resources/js/editor.js') @endpushonce
 </x-app-layout>

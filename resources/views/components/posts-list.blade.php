@@ -1,5 +1,5 @@
 <ul class="space-y-4">
-    @foreach($posts as $post)
+    @forelse($posts as $post)
     <li>
         <span class="font-mono text-sm">{{ $post->published_at->format("Y-m-d") }} - </span>
         <a
@@ -18,5 +18,7 @@
 {{--            @endforeach--}}
 {{--        </section>--}}
     </li>
-    @endforeach
+    @empty
+        <p class="italic">No thoughts here</p>
+    @endforelse
 </ul>

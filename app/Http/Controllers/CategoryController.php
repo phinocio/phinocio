@@ -12,7 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('name')->get();
+        $categories = Category::with('publishedPosts')->orderBy('name')->get();
 
         return view("category.index", ['categories' => $categories]);
     }
@@ -38,7 +38,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $category = $category->load("posts");
+        $category = $category->load('publishedPosts');
 
         return view("category.show", ['category' => $category]);
     }
