@@ -59,29 +59,36 @@
                 </div>
             </nav>
         </header>
-        <main class="container mx-auto mb-20 flex h-full flex-grow flex-col px-4 lg:px-80 lg:text-xl">
+        <main class="container mx-auto mb-20 flex h-full flex-grow flex-col px-4 lg:px-80 lg:text-xl">{{ $slot }}</main>
+        <footer class="bg-[#dce0e8] text-center text-black dark:bg-[#11111b] dark:text-white">
             @auth
-            <div class="flex items-center justify-end space-x-2 align-middle">
+            <div
+                class="absolute bottom-0 right-0 mb-8 mr-4 flex flex-col items-center rounded-2xl border border-border-light bg-light p-2 text-xs shadow-2xl dark:border-border-dark dark:bg-dark md:flex-row md:text-sm"
+            >
                 <a
                     href="/thoughts/create"
-                    class="text-sm text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
+                    class="p-2 text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
                 >
                     New Thought
+                </a>
+                <a
+                    href="/admin"
+                    class="p-2 text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
+                >
+                    Admin
                 </a>
 
                 <form action="/logout" method="POST" class="flex">
                     @csrf
                     <button
                         type="submit"
-                        class="text-sm text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
+                        class="p-2 text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
                     >
                         Logout
                     </button>
                 </form>
             </div>
-            @endauth {{ $slot }}
-        </main>
-        <footer class="bg-[#dce0e8] text-center text-black dark:bg-[#11111b] dark:text-white">
+            @endauth
             <div class="container mx-auto flex flex-col px-4 py-4 text-gray-500 dark:text-gray-600 lg:px-40">
                 Made by Phinocio
             </div>
