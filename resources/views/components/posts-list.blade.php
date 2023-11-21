@@ -1,4 +1,4 @@
-<ul class="space-y-4">
+<ul class="space-y-2">
     @forelse($posts as $post)
     <li>
         <span class="font-mono text-sm">{{ $post->published_at->format("Y-m-d") }} - </span>
