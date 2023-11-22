@@ -8,6 +8,7 @@
         --}} {{-- @endforeach--}} {{--
     </ul>
     --}} {{-- @endif--}}
+    <!-- TODO: Add github and website fields -->
     <form method="post" action="/projects" id="markdownForm" class="space-y-4">
         @csrf
         <formgroup class="flex flex-col space-y-2">
