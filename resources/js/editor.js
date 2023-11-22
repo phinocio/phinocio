@@ -14,7 +14,7 @@ if (content.value !== '') {
     editor.setMarkdown(content.value);
 }
 
-document.querySelector('#createPostForm').addEventListener('submit', (e) => {
+document.querySelector('#markdownForm').addEventListener('submit', (e) => {
     e.preventDefault();
     document.querySelector('#content').value = editor.getMarkdown();
     e.target.submit();

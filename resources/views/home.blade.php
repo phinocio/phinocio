@@ -11,22 +11,23 @@
 
     <section class="mb-8">
         <h1 class="mb-4 text-3xl font-bold">Projects</h1>
-        <ul>
-            <li>
-                <a
-                    href="#"
-                    class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
-                    >Load Order Library</a
-                >
-            </li>
-            <li>
-                <a
-                    href="#"
-                    class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
-                    >Nazeem</a
-                >
-            </li>
-        </ul>
+{{--        <ul>--}}
+{{--            <li>--}}
+{{--                <a--}}
+{{--                    href="#"--}}
+{{--                    class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"--}}
+{{--                    >Load Order Library</a--}}
+{{--                >--}}
+{{--            </li>--}}
+{{--            <li>--}}
+{{--                <a--}}
+{{--                    href="#"--}}
+{{--                    class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"--}}
+{{--                    >Nazeem</a--}}
+{{--                >--}}
+{{--            </li>--}}
+{{--        </ul>--}}
+        <x-projects-list :projects="$projects" />
     </section>
 
     <section>

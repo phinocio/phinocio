@@ -1,4 +1,4 @@
-@section('title', 'Create Post')
+@section('title', 'Create Project')
 
 <x-app-layout>
     {{-- @if ($errors->any())--}} {{--
@@ -8,7 +8,7 @@
         --}} {{-- @endforeach--}} {{--
     </ul>
     --}} {{-- @endif--}}
-    <form method="POST" action="/thoughts" id="markdownForm" class="space-y-4">
+    <form method="post" action="/projects" id="markdownForm" class="space-y-4">
         @csrf
         <formgroup class="flex flex-col space-y-2">
             <label for="title" class="font-bold">Title </label>
@@ -39,20 +39,6 @@
         </formgroup>
 
         <formgroup class="flex flex-col space-y-2">
-            <label for="categories" class="font-bold">Categories (comma separated)</label>
-            @error('categories')
-            <span class="rounded border border-red-500 bg-red-300 p-2 text-red-900">{{ $message }}</span>
-            @enderror
-            <input
-                id="categories"
-                type="text"
-                name="categories"
-                class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700"
-                value="{{ old('categories') }}"
-            />
-        </formgroup>
-
-        <formgroup class="flex flex-col space-y-2">
             <label for="editor" class="font-bold">Content</label>
             @error('content')
             <span class="rounded border border-red-500 bg-red-300 p-2 text-red-900">{{ $message }}</span>
@@ -63,22 +49,9 @@
         </formgroup>
 
         <formgroup class="flex items-center justify-between align-middle">
-            <button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white">Create Post</button>
-            <div class="flex items-center space-x-4 align-middle">
-                <label for="publish" class="rounded py-2">Publish? </label>
-                <input id="publish" type="checkbox" name="publish" class="h-6 w-6 checked:shadow-xl" />
-            </div>
+            <button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white">Create Project</button>
         </formgroup>
     </form>
-    <div class="absolute right-72">
-        <h2 class="text-xl font-bold">Categories</h2>
-        <ul>
-            @forelse( $categories as $category )
-            <li>{{ $category->name }}</li>
-            @empty
-            <li class="italic">No categories</li>
-            @endforelse
-        </ul>
-    </div>
+
     @pushOnce('scripts') @vite('resources/js/editor.js') @endpushonce
 </x-app-layout>

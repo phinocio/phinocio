@@ -4,6 +4,7 @@ use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
@@ -52,4 +53,33 @@ it('only allows an admin to create a thought', function () {
 
     actingAs($admin)->post(route('posts.store'), $attributes)->assertRedirect();
     assertDatabaseHas('posts', ['title' => $attributes['title']]);
+});
+
+it('only allows an admin to edit a thought', function () {
+    $user = User::factory()->create();
+    $admin = User::factory()->admin()->create();
+    $post = Post::factory()->create();
+    $attributes = [
+        'title' => fake()->name(),
+        'summary' => fake()->name(),
+        'content' => fake()->text(),
+        'categories' => fake()->name(),
+        'publish' => "on"
+    ];
+    actingAs($user)->put(route('posts.update', $post), $attributes)->assertForbidden();
+    assertDatabaseMissing('posts', ['title' => $attributes['title']]);
+
+    actingAs($admin)->put(route('posts.update', $post), $attributes)->assertRedirect();
+    assertDatabaseHas('posts', ['title' => $attributes['title']]);
+});
+
+it('only allows an admin to delete a thought', function () {
+    $user = User::factory()->create();
+    $admin = User::factory()->admin()->create();
+    $post = Post::factory()->create();
+    actingAs($user)->delete(route('posts.destroy', $post))->assertForbidden();
+    assertDatabaseHas('posts', ['id' => $post->id]);
+
+    actingAs($admin)->delete(route('posts.destroy', $post))->assertRedirect();
+    assertDatabaseMissing('posts', ['id' => $post->id]);
 });

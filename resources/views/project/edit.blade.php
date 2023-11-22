@@ -1,7 +1,7 @@
-@section('title', 'Edit Post')
+@section('title', 'Edit Project')
 
 <x-app-layout>
-    <h1 class="text-2xl font-bold">Edit Post</h1>
+    <h1 class="text-2xl font-bold">Edit project</h1>
     @if ($errors->any())
     <ul class="list-inside list-disc space-y-2">
         @foreach ($errors->all() as $error)
@@ -9,7 +9,7 @@
         @endforeach
     </ul>
     @endif
-    <form method="POST" action="/thoughts/{{ $post->slug }}" id="markdownForm" class="space-y-4">
+    <form method="post" action="/projects/{{ $project->slug }}" id="markdownForm" class="space-y-4">
         @csrf @method('PUT')
         <formgroup class="flex flex-col space-y-2">
             <label for="title" class="font-bold">Title </label>
@@ -21,7 +21,7 @@
                 type="text"
                 name="title"
                 class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700"
-                value="{{ old('title') ? old('title') : $post->title }}"
+                value="{{ old('title') ? old('title') : $project->title }}"
             />
         </formgroup>
 
@@ -35,21 +35,7 @@
                 type="text"
                 name="summary"
                 class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700"
-                value="{{ old('summary') ? old('summary') : $post->summary ?? '' }}"
-            />
-        </formgroup>
-
-        <formgroup class="flex flex-col space-y-2">
-            <label for="categories" class="font-bold">Categories (comma separated)</label>
-            @error('categories')
-            <span class="rounded border border-red-500 bg-red-300 p-2 text-red-900">{{ $message }}</span>
-            @enderror
-            <input
-                id="categories"
-                type="text"
-                name="categories"
-                class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700"
-                value="{{ old('categories') ? old('categories') : $post->categories->pluck('slug')->implode(',') }}"
+                value="{{ old('summary') ? old('summary') : $project->summary ?? '' }}"
             />
         </formgroup>
 
@@ -64,27 +50,14 @@
                 id="content"
                 type="hidden"
                 name="content"
-                value="{{ old('content') ? old('content') : $post->content}}"
+                value="{{ old('content') ? old('content') : $project->content}}"
             />
         </formgroup>
 
         <formgroup class="flex items-center justify-between align-middle">
-            <button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white">Edit Post</button>
-            <div class="flex items-center space-x-4 align-middle">
-                <label for="publish" class="rounded py-2">Publish? </label>
-                <!-- prettier-ignore-->
-                <input id="publish" type="checkbox" name="publish" {{ $post/>published_at ? 'checked' : '' }} class="h-6
-                w-6 checked:shadow-xl"/>
-            </div>
+            <button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white">Edit project</button>
         </formgroup>
     </form>
-    <div class="absolute right-72">
-        <h2 class="text-xl font-bold">Categories</h2>
-        <ul>
-            @foreach( $categories as $category )
-            <li>{{ $category->name }}</li>
-            @endforeach
-        </ul>
-    </div>
+
     @pushOnce('scripts') @vite('resources/js/editor.js') @endpushonce
 </x-app-layout>
