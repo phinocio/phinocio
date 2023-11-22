@@ -54,14 +54,12 @@ class PostController extends Controller
 
         $slug = Str::slug($validated['title']);
 
-        $post = new Post();
-        $post->title = $validated['title'];
-        $post->summary = $validated['summary'];
-        $post->slug = $slug;
-        $post->content = $validated['content'];
-        $post->published_at = $validated['publish'] ? Carbon::now() : null;
-        $post->user_id = auth()->user()->id;
-        $post->save();
+        $post = Post::create([
+            ...$validated,
+            'slug' => $slug,
+            'published_at' => isset($validated['publish']) ? Carbon::now() : null,
+            'user_id' => auth()->user()->id
+        ]);
         $post->categories()->sync($categories);
 
         return redirect('thoughts/' . $post->slug);
@@ -101,16 +99,11 @@ class PostController extends Controller
         foreach (explode(',', $validated['categories']) as $category) {
             $categories[] = Category::firstOrCreate(['name' => trim($category), 'slug' => Str::slug($category)])->id;
         }
-        $post->title = $validated['title'];
-        $post->summary = $validated['summary'];
-        $post->content = $validated['content'];
-        //        if ($post->published_at !== null && $validated['publish'] === null) {
-        //            $post->published_at = null;
-        //        } elseif ($post->published_at === null && $validated['publish'] !== null) {
-        //            $post->published_at = Carbon::now();
-        //        }
-        $post->published_at = isset($validated['publish']) ? Carbon::now() : null;
-        $post->save();
+
+        $post->update([
+            ...$validated,
+            'published_at' => isset($validated['publish']) ? Carbon::now() : null
+        ]);
         $post->categories()->sync($categories);
 
         return redirect('thoughts/' . $post->slug);
