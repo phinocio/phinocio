@@ -1,0 +1,56 @@
+services:
+
+  db:
+    image: mariadb:10.9
+    container_name: phin-prod-db
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_NAME: mariadb
+    volumes:
+      - phin-prod-db:/var/lib/mysql
+    networks:
+      - phinocio
+  app:
+    build:
+      context: .
+      args:
+        uid: 2000
+        gid: 2000
+      dockerfile: docker/prod/app/Dockerfile
+      target: app-prod
+    image: phin-prod:latest
+    container_name: phin-prod-app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9000:9000"
+    networks:
+      - phinocio
+    depends_on: [ db ]
+  nginx:
+    build:
+      context: .
+      args:
+        uid: 2000
+        gid: 2000
+      dockerfile: docker/prod/nginx/Dockerfile
+      target: nginx-prod
+    image: phin-prod-nginx:latest
+    container_name: phin-prod-nginx
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8001:80"
+    networks:
+      - phinocio
+    depends_on: [ app ]
+
+volumes:
+  phin-prod-db:
+
+networks:
+  phinocio:
