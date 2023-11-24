@@ -11,7 +11,9 @@
         <header class="mb-6 border-b border-border-light text-black dark:border-border-dark dark:text-white">
             <nav class="container mx-auto flex flex-col px-4 py-4 md:flex-row lg:px-80">
                 <div class="flex items-center justify-between">
-                    <a href="/" class="text-2xl font-bold text-red-500 dark:text-red-400 md:mr-6">Phinocio</a>
+                    <a href="/" class="text-2xl font-bold text-red-500 dark:text-red-400 md:mr-6 md:text-3xl"
+                        >Phinocio</a
+                    >
                     <button
                         type="button"
                         onclick="toggleMenu('dropdown-nav')"
@@ -63,7 +65,7 @@
         <footer class="bg-[#dce0e8] text-center text-black dark:bg-[#11111b] dark:text-white">
             @auth
             <div
-                class="absolute bottom-0 right-0 mb-8 mr-4 flex flex-col items-center rounded-2xl border border-border-light bg-light p-2 text-xs shadow-2xl dark:border-border-dark dark:bg-dark md:flex-row md:text-sm"
+                class="fixed bottom-0 right-0 mb-8 mr-4 flex flex-col items-center rounded-2xl border border-border-light bg-light p-2 text-xs shadow-2xl dark:border-border-dark dark:bg-dark md:flex-row md:text-sm"
             >
                 <a
                     href="/thoughts/create"
@@ -77,7 +79,12 @@
                 >
                     Admin
                 </a>
-
+                <a
+                    href="/profile"
+                    class="p-2 text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
+                >
+                    Profile
+                </a>
                 <form action="/logout" method="POST" class="flex">
                     @csrf
                     <button

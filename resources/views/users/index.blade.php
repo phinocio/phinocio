@@ -1,7 +1,7 @@
 @section('title', 'Profile')
 
 <x-app-layout>
-    <h1 class="mb-4 text-2xl font-bold">Profile</h1>
+    <h1 class="mb-4 text-2xl font-bold md:text-3xl">Profile</h1>
 
     <section class="mb-8 border-b border-border-light dark:border-border-dark">
         <h2 class="mb-4 text-xl font-bold">Update Password</h2>
@@ -97,13 +97,13 @@
         <!-- Show QR code if 2fa enabled -->
         <div class="py-4">{!! auth()->user()->twoFactorQrCodeSvg() !!}</div>
         <div class="py-4">
-            <h2>Recovery Codes</h2>
+            <h2 class="text-xl font-bold md:text-2xl">Recovery Codes</h2>
             <p>Keep these in a safe spot, they will not be shown again.</p>
             @foreach(auth()->user()->recoveryCodes() as $code)
             <p class="py-2">{{ $code }}</p>
             @endforeach
         </div>
-        <h2 class="text-2xl font-bold">Confirm Two-Factor Auth:</h2>
+        <h2 class="text-xl font-bold md:text-2xl">Confirm Two-Factor Auth:</h2>
         <form method="POST" action="{{ route('two-factor.confirm') }}" class="mb-4">
             @csrf
             <formgroup class="flex flex-col space-y-2">

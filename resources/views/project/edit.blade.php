@@ -1,7 +1,7 @@
 @section('title', 'Edit Project')
 
 <x-app-layout>
-    <h1 class="text-2xl font-bold">Edit project</h1>
+    <h1 class="text-2xl font-bold md:text-3xl">Edit project</h1>
     @if ($errors->any())
     <ul class="list-inside list-disc space-y-2">
         @foreach ($errors->all() as $error)

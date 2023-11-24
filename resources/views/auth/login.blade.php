@@ -2,7 +2,7 @@
 
 <x-app-layout>
     <div class="container mx-auto w-1/2">
-        <h1 class="mb-4 text-2xl font-bold">Login</h1>
+        <h1 class="mb-4 text-2xl font-bold md:text-3xl">Login</h1>
         @if ($errors->any())
         <ul class="list-inside list-disc space-y-2">
             @foreach ($errors->all() as $error)

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1 class="text-2xl font-bold">Confirm Password</h1>
+    <h1 class="text-2xl font-bold md:text-3xl">Confirm Password</h1>
 
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf

@@ -10,7 +10,7 @@
     </section>
 
     <section class="mb-8">
-        <h1 class="mb-4 text-3xl font-bold">Projects</h1>
+        <h1 class="mb-4 text-2xl md:text-3xl  font-bold">Projects</h1>
 {{--        <ul>--}}
 {{--            <li>--}}
 {{--                <a--}}
@@ -31,7 +31,7 @@
     </section>
 
     <section>
-        <h1 class="mb-4 text-3xl font-bold">Random Thoughts</h1>
+        <h1 class="mb-4 text-2xl md:text-3xl  font-bold">Random Thoughts</h1>
 
         <x-posts-list :posts="$posts" />
     </section>

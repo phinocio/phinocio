@@ -1,7 +1,7 @@
 @section('title', 'Edit Post')
 
 <x-app-layout>
-    <h1 class="text-2xl font-bold">Edit Post</h1>
+    <h1 class="text-2xl font-bold md:text-3xl">Edit Post</h1>
     @if ($errors->any())
     <ul class="list-inside list-disc space-y-2">
         @foreach ($errors->all() as $error)
@@ -73,7 +73,7 @@
             <div class="flex items-center space-x-4 align-middle">
                 <label for="publish" class="rounded py-2">Publish? </label>
                 <!-- prettier-ignore -->
-                <input id="publish" type="checkbox" name="publish" {{ $post->published_at ? 'checked' : '' }} class="h-6
+                <input id="publish" type="checkbox" name="publish" {{ $post/>published_at ? 'checked' : '' }} class="h-6
                 w-6 checked:shadow-xl"/>
             </div>
         </formgroup>

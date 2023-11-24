@@ -1,7 +1,7 @@
 @section('title', 'Projects')
 
 <x-app-layout>
-    <h1 class="mb-4 text-2xl font-bold">Projects</h1>
+    <h1 class="mb-4 text-2xl font-bold md:text-3xl">Projects</h1>
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         @forelse($projects as $project)
@@ -9,7 +9,7 @@
             class="flex flex-col rounded-xl border border-border-light px-4 py-2 shadow-md dark:border-border-dark"
         >
             <header class="flex justify-between border-b border-border-light dark:border-border-dark">
-                <h1 class="flex justify-between text-2xl font-bold">
+                <h1 class="flex justify-between text-2xl font-bold md:text-3xl">
                     <a
                         href="/projects/{{ $project->slug }}"
                         class="text-blue-600 hover:text-blue-400 active:text-blue-400 dark:text-blue-400 dark:hover:text-blue-600 dark:active:text-blue-600"
