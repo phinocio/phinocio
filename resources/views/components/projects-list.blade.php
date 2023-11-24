@@ -9,6 +9,6 @@
         </a>
     </li>
     @empty
-    <p class="italic">No projects here</p>
+    <li class="italic">No projects here</li>
     @endforelse
 </ul>

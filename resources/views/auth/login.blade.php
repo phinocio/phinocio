@@ -14,7 +14,14 @@
             @csrf
             <formgroup class="flex flex-col space-y-2">
                 <label for="name" class="font-bold">Name</label>
-                <input id="name" type="text" name="name" class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700" />
+                <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    class="inset-1 rounded px-4 py-2 shadow dark:bg-slate-700"
+                    autofocus
+                    autocomplete="name"
+                />
             </formgroup>
 
             <formgroup class="flex flex-col space-y-2">

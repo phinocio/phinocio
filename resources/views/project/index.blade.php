@@ -4,7 +4,7 @@
     <h1 class="mb-4 text-2xl font-bold">Projects</h1>
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        @foreach($projects as $project)
+        @forelse($projects as $project)
         <section
             class="flex flex-col rounded-xl border border-border-light px-4 py-2 shadow-md dark:border-border-dark"
         >
@@ -31,7 +31,10 @@
             </header>
             <p class="py-4">{{ $project->summary ?? "No summary provided." }}</p>
         </section>
-
-        @endforeach
+        @empty
+        <section>
+            <p class="italic">No projects here</p>
+        </section>
+        @endforelse
     </div>
 </x-app-layout>

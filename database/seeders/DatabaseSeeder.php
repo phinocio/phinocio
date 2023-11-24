@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Project;
 use Exception;
 use Illuminate\Database\Seeder;
 
@@ -33,7 +32,7 @@ class DatabaseSeeder extends Seeder
         //            $post->categories()->sync(array_unique($categories));
         //        }
 
-        Project::factory(3)->create();
+//        Project::factory(3)->create();
         $this->call([
             UserSeeder::class,
         ]);

@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,3 +75,5 @@ Route::controller(ProjectController::class)->group(function () {
     Route::delete('/projects/{project:slug}', 'destroy')
         ->name("project.destroy");
 });
+
+Route::get('/profile', [UserController::class, 'index']);

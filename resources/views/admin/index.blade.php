@@ -54,7 +54,7 @@
     </table>
 
     <h1 class="mb-4 text-2xl font-bold">Unpublished Posts</h1>
-    <table class="w-full">
+    <table class="mb-20 w-full">
         <thead>
             <tr class="border-b border-border-light dark:border-border-dark">
                 <th>Title</th>

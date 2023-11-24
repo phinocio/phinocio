@@ -1,5 +1,5 @@
 <ul>
-    @foreach( $categories as $category )
+    @forelse( $categories as $category )
     <li>
         <a
             href="/thoughts/categories/{{ $category->slug }}"
@@ -11,5 +11,7 @@
             ></a
         >
     </li>
-    @endforeach
+    @empty
+    <li class="italic">No categories here</li>
+    @endforelse
 </ul>
