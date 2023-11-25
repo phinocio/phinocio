@@ -6,6 +6,7 @@ const editor = new Editor({
     height: '500px',
     initialEditType: 'markdown',
     placeholder: 'Write something cool!',
+    usageStatistics: false,
 });
 
 const content = document.querySelector('#content');
