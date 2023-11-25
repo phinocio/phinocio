@@ -56,7 +56,7 @@ COPY --from=build-prod-node /app/public ./public
 COPY --from=build-prod-composer /app/vendor ./vendor
 COPY --from=build-prod-composer /app/bootstrap ./bootstrap
 
-RUN rm ./public/hot
+RUN rm -f /srv/phinocio.com/public/hot
 RUN chown -R $user:$user /srv/phinocio.com
 
 USER $user

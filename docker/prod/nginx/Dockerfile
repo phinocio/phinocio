@@ -18,4 +18,4 @@ FROM nginx:1.25.1-alpine as nginx-prod
 COPY --from=build-prod-node /app/public /srv/phinocio.com/public
 COPY ./docker/prod/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./docker/prod/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
-RUN rm /srv/phinocio.com/public/hot
+RUN rm -f /srv/phinocio.com/public/hot
