@@ -31,9 +31,6 @@ services:
   nginx:
     build:
       context: .
-      args:
-        uid: 2000
-        gid: 2000
       dockerfile: docker/prod/nginx/Dockerfile
       target: nginx-prod
     image: phin-prod-nginx:latest

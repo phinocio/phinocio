@@ -77,3 +77,8 @@ Route::controller(ProjectController::class)->group(function () {
 });
 
 Route::get('/profile', [UserController::class, 'index']);
+
+// Health Check for Uptime Kuma and others
+Route::get('/health', function () {
+    return ['status' => 'healthy'];
+});
