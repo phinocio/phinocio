@@ -1,5 +1,4 @@
-@section('title', $post->title)
-
+@section('title', $post->title) @section('og-description', $post->summary ?? 'No summary provided.')
 <x-app-layout>
     <article>
         <!-- Post Info -->

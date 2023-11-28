@@ -4,6 +4,19 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@yield('title') - {{ config('app.name', 'Phinocio') }}</title>
+
+        <!-- Open Graph Metadata -->
+        <meta property="og:type" content="@yield('og-type', 'website')" />
+        <meta property="site_name" content="{{ config('app.name', 'Phinocio') }}" />
+        <meta property="og:url" content="{{ url()->current() }}" />
+        <meta property="og:title" content="@yield('title') - {{ config('app.name', 'Phinocio') }}" />
+        <meta property="og:description" content="@yield('og-description')" />
+
+        <!-- Twitter Metadata -->
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:url" content="{{ url()->current() }}" />
+        <meta property="twitter:title" content="@yield('title') - {{ config('app.name', 'Phinocio') }}" />
+        <meta property="twitter:description" content="@yield('og-description')" />
         @vite('resources/css/app.css')
     </head>
 

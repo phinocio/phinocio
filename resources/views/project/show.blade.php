@@ -1,4 +1,5 @@
-@section('title', $project->title)
+@section('title', $project->title) @section('og-description', $project->summary ?? 'No summary provided.')
+
 <x-app-layout>
     <article>
         <!-- project Info -->
