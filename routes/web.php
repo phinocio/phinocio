@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
@@ -81,4 +82,10 @@ Route::get('/profile', [UserController::class, 'index']);
 // Health Check for Uptime Kuma and others
 Route::get('/health', function () {
     return ['status' => 'healthy'];
+});
+
+// Routes for web feeds (RSS, Atom, etc)
+Route::controller(FeedController::class)->group(function () {
+    Route::get('/feed/atom', 'atom')
+        ->name("posts.feed");
 });
