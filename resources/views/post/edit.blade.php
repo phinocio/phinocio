@@ -73,7 +73,7 @@
             <div class="flex items-center space-x-4 align-middle">
                 <label for="publish" class="rounded py-2">Publish? </label>
                 <!-- prettier-ignore -->
-                <input id="publish" type="checkbox" name="publish" {{ $post/>published_at ? 'checked' : '' }} class="h-6
+                <input id="publish" type="checkbox" name="publish" {{ $post->published_at ? 'checked' : '' }} class="h-6
                 w-6 checked:shadow-xl"/>
             </div>
         </formgroup>
